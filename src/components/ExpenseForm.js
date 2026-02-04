@@ -20,6 +20,8 @@ function ExpenseForm({ onSaveExpenseData, expenses = [], updateExpense }) {
         "Others"
     ];
 
+
+
     const submitHandler = (event) => {
         event.preventDefault();
 
