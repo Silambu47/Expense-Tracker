@@ -2,12 +2,34 @@
     margin: 0;
 }
 
+.filter-toggle-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.75rem;
+}
+
+.btn-toggle-filters {
+    border: none;
+    background: #4f46e5;
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.55rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-toggle-filters:hover {
+    background: #4338ca;
+}
+
 .filter-section {
     background: white;
     padding: 1.5rem;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .filter-group {
@@ -236,6 +258,7 @@
     padding: 1.5rem;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-top: 0.75rem;
 }
 
 .transactions-section h2 {
@@ -257,7 +280,9 @@
 
 .transactions-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
 }
 
 .transactions-table thead {
@@ -271,6 +296,16 @@
     color: #374151;
     font-size: 0.95rem;
     border-bottom: 2px solid #e5e7eb;
+    background: #f9fafb;
+    box-shadow: inset 0 -1px 0 #e5e7eb;
+}
+
+@media (min-width: 769px) {
+    .transactions-section .table-container {
+        max-height: 320px;
+        overflow-y: auto;
+        overflow-x: auto;
+    }
 }
 
 .transactions-table tbody tr {
@@ -330,6 +365,14 @@
 
 /* Tablet Responsive */
 @media (max-width: 768px) {
+    .filter-toggle-row {
+        justify-content: stretch;
+    }
+
+    .btn-toggle-filters {
+        width: 100%;
+    }
+
     .filter-section {
         padding: 1rem;
     }

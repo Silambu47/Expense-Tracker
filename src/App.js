@@ -31,7 +31,9 @@ function App() {
                 />
               </div>
               <div className="right-column">
-                <ExpenseReport expenses={expenses} />
+                <div className="right-column-scroll">
+                  <ExpenseReport expenses={expenses} />
+                </div>
               </div>
             </div>
             {/* Mobile Only - Show only form */}

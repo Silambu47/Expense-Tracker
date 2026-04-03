@@ -25,6 +25,39 @@
     font-weight: 700;
 }
 
+@media (min-width: 769px) {
+    .stats-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .stat-card {
+        padding: 1.35rem 1.45rem;
+        border-radius: 16px;
+        min-height: 108px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        border: 1px solid rgba(99, 102, 241, 0.1);
+    }
+
+    .stat-label {
+        font-size: 0.8125rem;
+        margin-bottom: 0.375rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .stat-value {
+        color: #111827;
+        font-size: 1.25rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+    }
+}
+
 .add-expense-section {
     background: white;
     padding: 1.5rem;

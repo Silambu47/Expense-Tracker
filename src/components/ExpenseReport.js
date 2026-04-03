@@ -4,6 +4,7 @@ import './ExpenseReport.css';
 
 function ExpenseReport({ expenses }) {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const chartHeight = isMobile ? 300 : 360;
 
     useEffect(() => {
         const handleResize = () => {
@@ -188,10 +189,10 @@ function ExpenseReport({ expenses }) {
                     )}
 
                     {/* Bar Chart - Category Comparison */}
-                    <div className="report-section">
+                    <div className="report-section report-section-chart">
                         <h3 className="section-title">📊 Top Categories Comparison</h3>
                         <div className="chart-container">
-                            <ResponsiveContainer width="100%" height={isMobile ? 300 : 400}>
+                            <ResponsiveContainer width="100%" height={chartHeight}>
                                 <BarChart data={sortedCategoryData.slice(0, 7)} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
                                     <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                                     <XAxis
@@ -222,7 +223,7 @@ function ExpenseReport({ expenses }) {
                         </div>
                     </div>
                     {/* Category Table */}
-                    <div className="report-section">
+                    <div className="report-section report-section-table">
                         <div className="section-header">
                             <h3 className="section-title">Category Breakdown</h3>
                             <button className="export-btn" onClick={exportToCSV}>
@@ -268,17 +269,17 @@ function ExpenseReport({ expenses }) {
                     </div>
 
                     {/* Donut Chart */}
-                    <div className="report-section">
+                    <div className="report-section report-section-chart">
                         <h3 className="section-title">🍩 Expense Distribution (Donut Chart)</h3>
                         <div className="chart-container pie-chart-container">
-                            <ResponsiveContainer width="100%" height={isMobile ? 400 : 500}>
+                            <ResponsiveContainer width="100%" height={chartHeight}>
                                 <PieChart>
                                     <Pie
                                         data={sortedCategoryData.slice(0, 7)}
-                                        cx={isMobile ? "50%" : "35%"}
-                                        cy={isMobile ? "40%" : "50%"}
-                                        outerRadius={isMobile ? 100 : 140}
-                                        innerRadius={isMobile ? 60 : 90}
+                                        cx="50%"
+                                        cy={isMobile ? "45%" : "46%"}
+                                        outerRadius={isMobile ? 95 : 120}
+                                        innerRadius={isMobile ? 58 : 75}
                                         dataKey="value"
                                         label={!isMobile ? ({ name, percent }) => `${(percent * 100).toFixed(1)}%` : false}
                                         labelLine={!isMobile}
@@ -301,15 +302,15 @@ function ExpenseReport({ expenses }) {
                                         contentStyle={{ background: 'white', border: '1px solid #e5e7eb', borderRadius: '8px', padding: '12px 16px', fontSize: '14px' }}
                                     />
                                     <Legend
-                                        layout={isMobile ? "horizontal" : "vertical"}
-                                        align={isMobile ? "center" : "right"}
-                                        verticalAlign={isMobile ? "bottom" : "middle"}
+                                        layout="horizontal"
+                                        align="center"
+                                        verticalAlign="bottom"
                                         formatter={(value, entry) => (
                                             <span style={{ fontSize: isMobile ? '12px' : '14px', color: '#1f2937', fontWeight: '500' }}>
                                                 {value}
                                             </span>
                                         )}
-                                        wrapperStyle={{ paddingLeft: isMobile ? '0' : '30px' }}
+                                        wrapperStyle={{ paddingTop: isMobile ? '10px' : '12px' }}
                                     />
                                 </PieChart>
                             </ResponsiveContainer>
@@ -317,10 +318,10 @@ function ExpenseReport({ expenses }) {
                     </div>
 
                     {/* Monthly Trend */}
-                    <div className="report-section report-section-last">
+                    <div className="report-section report-section-chart report-section-last">
                         <h3 className="section-title">📈 Monthly Spending Trend</h3>
                         <div className="chart-container">
-                            <ResponsiveContainer width="100%" height={isMobile ? 350 : 500}>
+                            <ResponsiveContainer width="100%" height={chartHeight}>
                                 <LineChart data={monthlyChartData} margin={{ top: 20, right: 40, left: 20, bottom: isMobile ? 60 : 100 }}>
                                     <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                                     <XAxis

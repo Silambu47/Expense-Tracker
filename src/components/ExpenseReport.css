@@ -148,6 +148,9 @@
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
+    min-height: 430px;
+    display: flex;
+    flex-direction: column;
 }
 
 .report-section-last {
@@ -211,6 +214,7 @@
 .table-container {
     overflow-x: auto;
     max-width: 100%;
+    flex: 1;
 }
 
 .report-table {
@@ -304,6 +308,8 @@
     width: 100%;
     overflow: visible;
     padding: 1rem;
+    min-height: 320px;
+    flex: 1;
 }
 
 .chart-container .recharts-wrapper {
@@ -336,6 +342,15 @@
 /* Line chart axis styling */
 .chart-container .recharts-cartesian-axis-tick-value {
     fill: #6b7280 !important;
+}
+
+/* Keep table section visually equal while preserving all rows with vertical scroll */
+@media (min-width: 769px) {
+    .report-section-table .table-container {
+        overflow-x: auto;
+        overflow-y: auto;
+        max-height: 320px;
+    }
 }
 
 /* No Data */
@@ -418,6 +433,7 @@
         border-radius: 0;
         margin-bottom: 0.5rem;
         padding: 1rem 0.75rem;
+        min-height: 360px;
     }
 
     .section-title {
@@ -443,6 +459,7 @@
         margin: 0.5rem 0 0 0;
         padding: 0 0.5rem;
         width: 100%;
+        min-height: 280px;
     }
 }
 
@@ -495,6 +512,7 @@
 
     .report-section {
         padding: 0.5rem;
+        min-height: auto;
     }
 
     .section-title {
@@ -571,6 +589,7 @@
         margin: 0;
         width: 100%;
         overflow-x: hidden;
+        min-height: 260px;
     }
 
     .no-data {

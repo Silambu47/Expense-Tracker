@@ -3,6 +3,7 @@ import './ExpenseList.css';
 // import ExpenseItem from './ExpenseItem';
 
 function ExpenseList({ expenses, deleteExpense, updateExpense }) {
+    const [showFilters, setShowFilters] = useState(true);
     const [filterCategory, setFilterCategory] = useState('All');
     const [sortBy, setSortBy] = useState('newest');
     const [fromDate, setFromDate] = useState('');
@@ -113,58 +114,70 @@ function ExpenseList({ expenses, deleteExpense, updateExpense }) {
 
     return (
         <div className="expense-list">
-            <div className="filter-section">
-                <div className="filter-group">
-                    <div className="filter-item">
-                        <label>Filter by Category</label>
-                        <select value={filterCategory} onChange={(e) => setFilterCategory(e.target.value)}>
-                            {categories.map((category) => (
-                                <option key={category} value={category}>
-                                    {category === 'All' ? 'All Categories' : category}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="filter-item">
-                        <label>Sort by</label>
-                        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-                            <option value="newest">Newest First</option>
-                            <option value="oldest">Oldest First</option>
-                            <option value="highest">Highest Amount</option>
-                            <option value="lowest">Lowest Amount</option>
-                        </select>
-                    </div>
-                </div>
-                <div className="date-filter-group">
-                    <div className="date-filter-item">
-                        <label>From Date</label>
-                        <input
-                            type="date"
-                            value={fromDate}
-                            onChange={(e) => setFromDate(e.target.value)}
-                        />
-                    </div>
-                    <div className="date-filter-item">
-                        <label>To Date</label>
-                        <input
-                            type="date"
-                            value={toDate}
-                            onChange={(e) => setToDate(e.target.value)}
-                        />
-                    </div>
-                    {(fromDate || toDate) && (
-                        <button
-                            className="btn-clear-dates"
-                            onClick={() => {
-                                setFromDate('');
-                                setToDate('');
-                            }}
-                        >
-                            Clear Dates
-                        </button>
-                    )}
-                </div>
+            <div className="filter-toggle-row">
+                <button
+                    type="button"
+                    className="btn-toggle-filters"
+                    onClick={() => setShowFilters((prev) => !prev)}
+                >
+                    {showFilters ? 'Hide Filters' : 'Show Filters'}
+                </button>
             </div>
+
+            {showFilters && (
+                <div className="filter-section">
+                    <div className="filter-group">
+                        <div className="filter-item">
+                            <label>Filter by Category</label>
+                            <select value={filterCategory} onChange={(e) => setFilterCategory(e.target.value)}>
+                                {categories.map((category) => (
+                                    <option key={category} value={category}>
+                                        {category === 'All' ? 'All Categories' : category}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="filter-item">
+                            <label>Sort by</label>
+                            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+                                <option value="newest">Newest First</option>
+                                <option value="oldest">Oldest First</option>
+                                <option value="highest">Highest Amount</option>
+                                <option value="lowest">Lowest Amount</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="date-filter-group">
+                        <div className="date-filter-item">
+                            <label>From Date</label>
+                            <input
+                                type="date"
+                                value={fromDate}
+                                onChange={(e) => setFromDate(e.target.value)}
+                            />
+                        </div>
+                        <div className="date-filter-item">
+                            <label>To Date</label>
+                            <input
+                                type="date"
+                                value={toDate}
+                                onChange={(e) => setToDate(e.target.value)}
+                            />
+                        </div>
+                        {(fromDate || toDate) && (
+                            <button
+                                className="btn-clear-dates"
+                                onClick={() => {
+                                    setFromDate('');
+                                    setToDate('');
+                                }}
+                            >
+                                Clear Dates
+                            </button>
+                        )}
+                    </div>
+                </div>
+            )}
 
             <div className="transactions-section">
                 <h2>Transactions</h2>
